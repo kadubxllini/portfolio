@@ -48,7 +48,7 @@ body {
 }
 
 /* ============================================================
-   HEADER — Branding à esquerda + cápsula centralizada
+   HEADER - Branding à esquerda + cápsula centralizada
    ============================================================ */
 
 .header-container {
@@ -105,7 +105,7 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* Cápsula de navegação — posicionada absolutamente no centro */
+/* Cápsula de navegação - posicionada absolutamente no centro */
 .menu-capsule {
   display: flex;
   align-items: center;
@@ -152,7 +152,7 @@ body {
 }
 
 /* ============================================================
-   LAYOUT — Container principal e seções
+   LAYOUT - Container principal e seções
    ============================================================ */
 
 .main-container {
@@ -168,7 +168,7 @@ section {
 }
 
 /* ============================================================
-   HERO — Mockup de browser com título principal
+   HERO - Mockup de browser com título principal
    ============================================================ */
 
 .hero-sec {
@@ -295,7 +295,7 @@ section {
   position: relative;
 }
 
-/* Fonte pixel — usada no destaque "Computador." do hero */
+/* Fonte pixel - usada no destaque "Computador." do hero */
 .pixel-font {
   font-family: 'Pixelify Sans', 'Courier New', monospace;
   font-style: normal;
@@ -314,7 +314,7 @@ section {
 }
 
 /* ============================================================
-   BOTÕES — Primário (branco sólido) e Secundário (fantasma)
+   BOTÕES - Primário (branco sólido) e Secundário (fantasma)
    ============================================================ */
 
 .action-buttons {
@@ -363,7 +363,7 @@ section {
 }
 
 /* ============================================================
-   TÍTULOS DE SEÇÃO — Tag verde + título principal
+   TÍTULOS DE SEÇÃO - Tag verde + título principal
    ============================================================ */
 
 .section-tag {
@@ -385,7 +385,7 @@ section {
 }
 
 /* ============================================================
-   SOBRE — Card com informações da disciplina
+   SOBRE - Card com informações da disciplina
    ============================================================ */
 
 .about-box {
@@ -444,7 +444,7 @@ section {
 }
 
 /* ============================================================
-   CONTATO — Grid com info + formulário
+   CONTATO - Grid com info + formulário
    ============================================================ */
 
 .contact-sec {
@@ -606,7 +606,7 @@ section {
 }
 
 /* ============================================================
-   ATIVIDADES — Lista de blocos de atividades do semestre
+   ATIVIDADES - Lista de blocos de atividades do semestre
    ============================================================ */
 
 .atividades-praticas-container {
@@ -704,7 +704,7 @@ section {
 }
 
 /* ============================================================
-   CURRÍCULO — Grid de duas colunas com cards de experiência
+   CURRÍCULO - Grid de duas colunas com cards de experiência
    ============================================================ */
 
 .curriculo-grid {
@@ -806,7 +806,7 @@ section {
 }
 
 /* ============================================================
-   AJUDA — Cards com heurísticas de Nielsen aplicadas
+   AJUDA - Cards com heurísticas de Nielsen aplicadas
    ============================================================ */
 
 .ajuda-intro-card {
@@ -945,7 +945,7 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVIDADE — Mobile (max 768px)
+   RESPONSIVIDADE - Mobile (max 768px)
    ============================================================ */
 
 @media (max-width: 768px) {
@@ -1022,7 +1022,7 @@ footer {
 }
 
 /* ============================================================
-   SUBPAGES — Layout das páginas de atividade individuais
+   SUBPAGES - Layout das páginas de atividade individuais
    ============================================================ */
 
 .subpage-container {
@@ -1063,7 +1063,7 @@ footer {
 }
 
 /* ============================================================
-   PDF VIEWER — Visualizador embutido de documentos
+   PDF VIEWER - Visualizador embutido de documentos
    ============================================================ */
 
 .pdf-viewer-container {
@@ -1128,7 +1128,7 @@ footer {
 }
 
 /* ============================================================
-   ARTIGO — Layout de texto corrido (Atividades 1, 2 e 6)
+   ARTIGO - Layout de texto corrido (Atividades 1, 2 e 6)
    ============================================================ */
 
 .article-card {
@@ -1175,4 +1175,165 @@ footer {
   border-radius: 0 12px 12px 0;
   margin: 24px 0;
   font-style: italic;
+}
+
+/* ============================================================
+   ANÁLISE DE UX (Atividade 1)
+   ============================================================ */
+
+.qa-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 10px;
+}
+
+.qa-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s ease;
+}
+
+.qa-card:hover {
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.qa-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 12px;
+}
+
+.qa-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.qa-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.qa-body {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.qa-body strong {
+  color: var(--text-main);
+}
+
+
+
+.hedonomia-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.hedonomia-table th,
+.hedonomia-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.hedonomia-table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.hedonomia-table tr:hover {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.score-indicator {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.star-fill {
+  color: #fbbf24;
+}
+
+.star-empty {
+  color: #374151;
+}
+
+.score-number {
+  font-weight: 600;
+  color: var(--text-main);
+  margin-left: 6px;
+  font-size: 0.8rem;
+}
+
+.improvement-box {
+  margin-top: 24px;
+  border-top: 1px solid var(--border-dark);
+  padding-top: 20px;
+}
+
+.improvement-box h5 {
+  font-family: var(--font-display);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+
+  .hedonomia-table,
+  .hedonomia-table tbody,
+  .hedonomia-table tr,
+  .hedonomia-table td,
+  .hedonomia-table th {
+    display: block;
+    width: 100%;
+  }
+
+  .hedonomia-table thead {
+    display: none;
+  }
+
+  .hedonomia-table tr {
+    margin-bottom: 15px;
+    border: 1px solid var(--border-dark);
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  .hedonomia-table td {
+    border: none;
+    padding: 6px 8px;
+  }
+
+  .hedonomia-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    color: var(--text-main);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
 }

@@ -1,84 +1,251 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atividade 01 • IHC - Kadu Bellini</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <main class="main-container">
-      <div class="subpage-container">
 
-        <!-- NAVEGAÇÃO: Voltar para a lista de atividades -->
-        <div class="subpage-back-nav">
-          <a href="/#atividades" class="btn-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <span>Voltar para Atividades</span>
-          </a>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atividade 01 • IHC - Kadu Bellini</title>
+  <meta name="description"
+    content="Análise de Usabilidade e Fatores Humanos do Letterboxd no portfólio de IHC de Kadu Bellini." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
 
-        <!-- CABEÇALHO DA PÁGINA -->
-        <div class="section-header">
-          <span class="section-tag">Atividade 01 • Aula Prática (13/03)</span>
-          <h2 class="section-title">Fatores Humanos em Interfaces Computacionais</h2>
-          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">
-            Uma análise detalhada sobre as limitações e capacidades cognitivas, perceptuais e motoras do homem no uso de sistemas digitais.
-          </p>
-        </div>
+<body>
+  <main class="main-container">
+    <div class="subpage-container">
 
-        <!-- CONTEÚDO: Artigo em texto corrido -->
-        <div class="article-card">
-          <div class="article-content">
-            <p>
-              Na disciplina de <strong>Interação Humano-Computador (IHC)</strong>, o estudo dos fatores humanos investiga as características físicas, mentais e comportamentais que delimitam como as pessoas interagem com computadores. Uma interface bem-sucedida deve se moldar às limitações do usuário, e não o contrário.
-            </p>
+      <!-- NAVEGAÇÃO: Voltar para a lista de atividades -->
+      <div class="subpage-back-nav">
+        <a href="/#atividades" class="btn-back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Voltar para Atividades</span>
+        </a>
+      </div>
 
-            <div class="article-highlight">
-              "Projetar sem considerar as limitações humanas é projetar para o erro." — Jakob Nielsen
+      <!-- CABEÇALHO DA PÁGINA -->
+      <div class="section-header">
+        <span class="section-tag">Atividade 01 • Aula Prática (13/03)</span>
+        <h2 class="section-title">Fatores Humanos em Interfaces Computacionais</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">
+          Uma análise detalhada dos fatores humanos e de design de interação aplicados ao aplicativo
+          <strong>Letterboxd</strong>, sob as perspectivas cognitiva, perceptual, motora e emocional.
+        </p>
+      </div>
+
+      <!-- CONTEÚDO: Análise de Usabilidade -->
+      <div class="article-card">
+        <div class="qa-container">
+
+          <!-- Pergunta 1 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 1</span>
+              <h3 class="qa-title">Sistema Escolhido</h3>
             </div>
-
-            <h3>1. Limitações Cognitivas</h3>
-            <p>
-              A cognição humana refere-se a processos como atenção, memória, tomada de decisão e linguagem. Ao projetar telas, precisamos mitigar a <strong>sobrecarga cognitiva</strong>:
-            </p>
-            <ul class="article-list">
-              <li><strong>Memória de Curto Prazo (Lei de Miller):</strong> Conseguimos reter apenas cerca de 7 (mais ou menos 2) itens de informação simultaneamente na memória de trabalho. Por isso, menus e elementos de controle devem ser enxutos.</li>
-              <li><strong>Carregamento de Atenção:</strong> A atenção humana é altamente seletiva e dispersa. Padrões visuais organizados (gestalt) ajudam o cérebro a focar no que realmente importa, reduzindo elementos que disputam sua atenção.</li>
-            </ul>
-
-            <h3>2. Limitações Perceptuais</h3>
-            <p>
-              A percepção está diretamente ligada à nossa capacidade sensorial de decodificar estímulos auditivos, táteis e visuais.
-            </p>
-            <ul class="article-list">
-              <li><strong>Sensibilidade ao Contraste &amp; Cores:</strong> Nem todos os usuários percebem cores da mesma forma (daltonismo, baixa visão). Por essa razão, a diferença de luminância entre o texto e o fundo do portfólio segue taxas rigorosas de legibilidade.</li>
-              <li><strong>Leitura em Tela:</strong> O olho humano costuma escanear páginas em padrões do tipo "F" ou "Z". O uso de espaçamento generoso, títulos bem-demarcados e fontes limpas (como <em>Inter</em>) facilita a digestão visual da escrita.</li>
-            </ul>
-
-            <h3>3. Limitações Motoras</h3>
-            <p>
-              As limitações motoras do usuário definem o tempo e a precisão da manipulação física de periféricos como mouses, teclados ou telas de toque (touchscreens).
-            </p>
-            <ul class="article-list">
-              <li><strong>Lei de Fitts:</strong> O tempo para alcançar um alvo com o cursor é uma função da distância e do tamanho do alvo. Ícones e botões interativos devem possuir área de clique generosa (touch-targets excelentes com no mínimo 44px de diâmetro) para evitar erros e cansaço físico.</li>
-              <li><strong>Feedback Imediato:</strong> Quando executamos uma ação, precisamos de retorno instantâneo (vocal, sonoro ou visual-tátil) confirmando que o sistema recebeu o comando. O menu flutuante e botões com transição suave no portfólio cumprem esse propósito ergonômico.</li>
-            </ul>
-
-            <h3>Conclusão</h3>
-            <p>
-              Tratar o usuário como o centro do desenvolvimento de software exige humildade técnica. Ao acomodar os fatores cognitivos, perceptuais e de precisão mecânica, as barreiras tecnológicas se tornam fluidas, resultando em softwares verdadeiramente usáveis, inclusivos e ergonômicos.
+            <p style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <img src="https://cdn.brandfetch.io/ido_8ZbVui/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B"
+                alt="Letterboxd logo" style="width: 24px; height: 24px; border-radius: 6px;" />
+              <strong>Letterboxd</strong> - Rede social voltada para cinéfilos com o objetivo principal de permitir a
+              avaliação de filmes (com notas de 0.5 a 5 estrelas), registro de diários de visualização (logs) e
+              organização e compartilhamento de listas personalizadas de filmes.
             </p>
           </div>
+
+          <!-- Pergunta 2 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 2</span>
+              <h3 class="qa-title">Princípios de Gestalt: Reconhecimento de Padrões</h3>
+            </div>
+            <div class="qa-body">
+              <p>O princípio de <strong>Conectividade</strong> visual é claramente aplicado na barra de navegação
+                inferior do aplicativo móvel.</p>
+              <p style="margin-top: 10px;">As opções principais do aplicativo - <em>Menu Principal, Pesquisa, Logar
+                  Filme, Atividade e Perfil</em> - são dispostas de forma alinhada e contígua em uma barra única física
+                na base da tela. Essa conexão física através do contêiner da barra indica ao cérebro do usuário que
+                todos esses elementos pertencem à mesma categoria funcional (navegação principal do app), permitindo uma
+                rápida assimilação visual.</p>
+            </div>
+          </div>
+
+          <!-- Pergunta 3 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 3</span>
+              <h3 class="qa-title">Memória de Trabalho (MCD) e Chunks</h3>
+            </div>
+            <div class="qa-body">
+              <p><strong>Exemplo de Agrupamento Eficiente (Chunks):</strong> Ao abrir a página de perfil de um filme, as
+                informações técnicas cruciais são agrupadas de forma concisa e de leitura rápida no topo: nome do filme,
+                diretor, ano de lançamento e duração total. Essas informações formam um "chunk" facilmente processado
+                pela memória de trabalho.</p>
+              <p style="margin-top: 10px;"><strong>Exemplo de Sobrecarga Cognitiva (Falha):</strong> Ao entrar na aba
+                detalhada de elenco (Cast), o aplicativo pode gerar sobrecarga. Ele apresenta, de forma simultânea e
+                densa, o nome e a foto de todos os atores e equipe técnica envolvidos na produção, além do nome de seus
+                respectivos personagens. Sem uma paginação ou agrupamento progressivo por relevância, o volume de
+                informação sobrecarrega o canal visual do usuário em consultas rápidas.</p>
+            </div>
+          </div>
+
+          <!-- Pergunta 4 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 4</span>
+              <h3 class="qa-title">Vieses Cognitivos e Sistema 1</h3>
+            </div>
+            <div class="qa-body">
+              <p>Ao navegar pelo perfil e tocar na seção de <strong>"Stats" (Estatísticas de Visualização)</strong>, o
+                usuário que possui uma conta gratuita é imediatamente redirecionado para a tela de upgrade de plano
+                (Pro/Patron), necessário para visualização dessa aba.</p>
+              <p style="margin-top: 10px;">O design explora a curiosidade e o viés de <strong>Aversão à Perda</strong>
+                (ou o medo de ficar de fora - FOMO), demonstrando de forma implícita o valor das análises que o usuário
+                "está perdendo" ao não assinar o plano pago, incentivando a conversão imediata de forma automática e
+                baseada em intuição rápida (Sistema 1).</p>
+            </div>
+          </div>
+
+          <!-- Pergunta 5 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 5</span>
+              <h3 class="qa-title">Sistema Motor e Lei de Fitts</h3>
+            </div>
+            <div class="qa-body">
+              <p>O principal botão de ação do aplicativo - o botão para registrar/logar um filme - está posicionado de
+                forma estratégica no <strong>centro da barra inferior</strong> e, ao invés de ter coloração cinza como
+                as outras opções, possui uma cor verde vibrante em destaque.</p>
+            </div>
+          </div>
+
+          <!-- Pergunta 6 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 6</span>
+              <h3 class="qa-title">Modelos Mentais e Imagem do Sistema</h3>
+            </div>
+            <div class="qa-body">
+              <p>Um conflito comum de modelo mental ocorre na tela inicial ao clicar na aba <strong>"Lists"
+                  (Listas)</strong>. O modelo mental intuitivo do usuário sugere que a aba traria em destaque as listas
+                oficiais mais populares curadas pelo próprio Letterboxd (como o <em>Top 250</em> ou listas de prêmios).
+              </p>
+              <p style="margin-top: 10px;">No entanto, a imagem do sistema implementada pelos designers prioriza a
+                atividade social, exibindo primeiro as principais listas criadas pelos amigos do usuário. As listas
+                oficiais do próprio aplicativo ficam relegadas ao final da página. Esse desalinhamento entre a
+                expectativa do usuário e o design do sistema gera uma leve frustração e atrito na busca direta por
+                conteúdo de referência.</p>
+            </div>
+          </div>
+
+          <!-- Pergunta 7 -->
+          <div class="qa-card">
+            <div class="qa-header">
+              <span class="qa-badge">Pergunta 7</span>
+              <h3 class="qa-title">Pirâmide da Hedonomia</h3>
+            </div>
+            <div class="qa-body">
+              <p>Avaliação do Letterboxd com notas de 1 a 5 para cada nível da Pirâmide da Hedonomia:</p>
+
+              <table class="hedonomia-table">
+                <thead>
+                  <tr>
+                    <th>Nível da Pirâmide</th>
+                    <th>Nota</th>
+                    <th>Análise no Letterboxd</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Nível da Pirâmide"><strong>5. Individualização</strong></td>
+                    <td data-label="Nota">
+                      <div class="score-indicator">
+                        <span class="star-fill">★</span><span class="star-fill">★</span><span
+                          class="star-fill">★</span><span class="star-fill">★</span><span class="star-fill">★</span>
+                        <span class="score-number">5/5</span>
+                      </div>
+                    </td>
+                    <td data-label="Análise no Letterboxd">No plano pago, há a liberdade de escolher entre várias opções
+                      de posters e banners para os filmes, que podem ser mudados a cada log. No gratuito não há essa
+                      opção, mas o usuário ainda é livre para criar várias listas com temas diferentes.</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Nível da Pirâmide"><strong>4. Experiência Prazerosa</strong></td>
+                    <td data-label="Nota">
+                      <div class="score-indicator">
+                        <span class="star-fill">★</span><span class="star-fill">★</span><span
+                          class="star-fill">★</span><span class="star-fill">★</span><span class="star-fill">★</span>
+                        <span class="score-number">5/5</span>
+                      </div>
+                    </td>
+                    <td data-label="Análise no Letterboxd">O app possui a opção "review" ao logar um filme (mesmo
+                      repetido) para escrever resenhas. Há liberdade para negritar, mudar fonte, usar links de
+                      redirecionamento, e os outros usuários podem curtir ou comentar na resenha.</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Nível da Pirâmide"><strong>3. Usabilidade</strong></td>
+                    <td data-label="Nota">
+                      <div class="score-indicator">
+                        <span class="star-fill">★</span><span class="star-fill">★</span><span
+                          class="star-fill">★</span><span class="star-fill">★</span><span class="star-empty">★</span>
+                        <span class="score-number">4/5</span>
+                      </div>
+                    </td>
+                    <td data-label="Análise no Letterboxd"></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Nível da Pirâmide"><strong>2. Funcionalidade</strong></td>
+                    <td data-label="Nota">
+                      <div class="score-indicator">
+                        <span class="star-fill">★</span><span class="star-fill">★</span><span
+                          class="star-fill">★</span><span class="star-fill">★</span><span class="star-empty">★</span>
+                        <span class="score-number">4/5</span>
+                      </div>
+                    </td>
+                    <td data-label="Análise no Letterboxd"></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Nível da Pirâmide"><strong>1. Segurança</strong></td>
+                    <td data-label="Nota">
+                      <div class="score-indicator">
+                        <span class="star-fill">★</span><span class="star-fill">★</span><span
+                          class="star-fill">★</span><span class="star-empty">★</span><span class="star-empty">★</span>
+                        <span class="score-number">3/5</span>
+                      </div>
+                    </td>
+                    <td data-label="Análise no Letterboxd">Permite a autenticação de dois fatores (2FA), mas não a cita
+                      durante a criação da conta. O alerta de que a conta não possui o 2FA ativado é emitido apenas ao
+                      acessar a plataforma pelo site.</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="improvement-box">
+                <h5>🔒 Análise da Menor Nota: Segurança (Nota 3)</h5>
+                <p>O aplicativo oferece a opção de ligar a autenticação em 2 fatores, mas falha ao não apresentar isso
+                  no momento da criação da conta de usuário. Além disso, emite o alerta avisando que a conta não tem
+                  isso ativado apenas pelo site, negligenciando a comunicação no aplicativo móvel.</p>
+                <p style="margin-top: 10px;"><strong>Como o sistema pode subir de nível:</strong> O Letterboxd precisa
+                  integrar a ativação e a conscientização sobre o 2FA diretamente no aplicativo para celular (tanto no
+                  fluxo de onboarding ao registrar a conta, quanto nas configurações de segurança nativas do app móvel),
+                  promovendo a segurança proativamente.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <!-- RODAPÉ DA SUBPÁGINA -->
-        <hr style="border: 0; border-top: 1px solid var(--border-dark); margin: 30px 0 10px 0;">
-        <p style="color: var(--text-muted); font-size: 0.72rem; text-align: center;">
-          © 2026 Kadu Bellini • Portfólio Acadêmico para atividade IHC.
-        </p>
-
       </div>
-    </main>
-  </body>
+
+      <!-- RODAPÉ DA SUBPÁGINA -->
+      <hr style="border: 0; border-top: 1px solid var(--border-dark); margin: 30px 0 10px 0;">
+      <p style="color: var(--text-muted); font-size: 0.72rem; text-align: center;">
+        © 2026 Kadu Bellini • Portfólio Acadêmico para atividade IHC.
+      </p>
+
+    </div>
+  </main>
+</body>
+
 </html>
