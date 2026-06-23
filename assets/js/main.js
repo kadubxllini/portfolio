@@ -101,7 +101,7 @@ const track = document.getElementById('skills-track');
 
 if (carousel && track) {
   const group = track.querySelector('.skills-carousel-group');
-  let speed = 1.3; // velocidade em pixels por frame
+  let speed = 0.6; // velocidade em pixels por frame
   let currentSpeed = speed;
   let targetSpeed = speed;
   let position = 0;
