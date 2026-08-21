@@ -631,6 +631,9 @@ section {
 
 .projeto-links {
   display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
   margin-top: auto;
 }
 
