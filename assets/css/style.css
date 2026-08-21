@@ -580,7 +580,6 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -588,6 +587,7 @@ section {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .projeto-numero {
@@ -599,6 +599,8 @@ section {
   background: rgba(16, 185, 129, 0.08);
   padding: 3px 8px;
   border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .projeto-tag {
@@ -607,12 +609,17 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .projeto-data {
   font-size: 0.7rem;
   color: var(--text-muted);
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .projeto-titulo {
