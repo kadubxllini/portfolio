@@ -29,7 +29,7 @@ window.addEventListener('scroll', () => {
 
 // Efeito Typewriter para o Hero
 const typewriterContainer = document.getElementById('typewriter-container');
-if (typewriterContainer) {
+if (typewriterContainer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const line1Text = "Desenvolvendo softwares com:";
   const line2TextPart1 = "Design & ";
   const line2TextPart2 = "Código Limpo.";
@@ -99,7 +99,7 @@ if (typewriterContainer) {
 const carousel = document.getElementById('skills-carousel');
 const track = document.getElementById('skills-track');
 
-if (carousel && track) {
+if (carousel && track && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const group = track.querySelector('.skills-carousel-group');
   let speed = 0.6; // velocidade em pixels por frame
   let currentSpeed = speed;

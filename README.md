@@ -1,7 +1,9 @@
 # Portfólio pessoal
 
-Página pessoal feita em HTML, com os arquivos visuais em `assets/`. Reúne a apresentação e os trabalhos incluídos nesta versão do portfólio.
+Meu portfólio reúne projetos de trabalho e estudo, com imagens e uma apresentação do que cada sistema faz.
 
-Para abrir localmente, use `index.html` no navegador. Não há etapa de instalação ou build na raiz do projeto.
+[Abrir o portfólio](https://kadubxllini.github.io/portfolio/)
 
-Este repositório registra uma versão do site. A apresentação atual e os projetos mais recentes também estão no [meu perfil do GitHub](https://github.com/kadubxllini).
+Feito em HTML, CSS e JavaScript, sem dependências de instalação ou etapa de build. Para conferir localmente, sirva esta pasta com um servidor estático ou abra `index.html` no navegador.
+
+Os painéis nas imagens usam dados fictícios em ambientes locais de demonstração. As capturas das lojas são de páginas públicas. O código dos projetos privados continua privado.
