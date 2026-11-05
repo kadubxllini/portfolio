@@ -959,3 +959,76 @@ footer { flex-wrap: wrap; gap: 20px; }
 .project-figure a:hover img, .public-project-image:hover img { transform: none; }
 .project-figure figcaption { padding: 14px 24px 0; }
 .public-project-image { border-radius: 8px; background: transparent; }
+/* Mais área útil nos projetos, mantendo os textos longos legíveis. */
+.main-container { width: calc(100% - 64px); max-width: 1160px; }
+#inicio, #sobre, #curriculo, #contato { max-width: 920px; margin-left: auto; margin-right: auto; }
+.projetos-container { gap: 24px; }
+.projeto-bloco { gap: 0; }
+.project-figure figcaption { padding: 12px 20px 0; }
+.project-copy { padding: 18px 20px 20px; }
+.project-copy .projeto-titulo { margin-top: 8px; margin-bottom: 6px; }
+.project-copy .projeto-descricao { flex: initial; margin-bottom: 18px; font-size: .9rem; }
+.project-copy .projeto-links { margin-top: auto; }
+.project-copy .projeto-tag { white-space: normal; }
+.project-private { margin-top: 8px; }
+.public-project-grid { gap: 28px; }
+@media (max-width: 768px) { .main-container { width: calc(100% - 32px); } .project-copy { padding: 16px 18px 18px; } .project-figure figcaption { padding: 12px 18px 0; } }
+/* A mesma largura de seção em todo o portfólio. */
+#inicio, #sobre, #curriculo, #contato { max-width: none; }
+.curriculo-timeline { max-width: none; }
+.about-text { max-width: 82ch; }
+.hero-description { max-width: 70ch; }
+.contact-lead { max-width: 65ch; margin-left: auto; margin-right: auto; }
+/* Revisão de composição para o novo container de 1160px. */
+section { padding: 48px 0; margin-bottom: 16px; }
+.section-tag, .contact-tag { display: none; }
+.section-title { font-size: clamp(1.65rem, 2.5vw, 2.2rem); }
+.main-container { margin-top: 128px; }
+.hero-sec { padding-top: 24px; padding-bottom: 56px; }
+.browser-content { padding: 64px 32px; }
+.hero-display-title { min-height: 2.4em; text-wrap: balance; }
+.mockup-browser { box-shadow: none; }
+.mockup-browser:hover { box-shadow: none; }
+#sobre { display: grid; grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr); gap: 24px; }
+#sobre .section-header { grid-column: 1 / -1; }
+.about-box { padding: 32px; border-radius: 16px; }
+.about-text { max-width: 70ch; font-size: .94rem; line-height: 1.75; }
+.about-academic-box { margin-top: 0; padding: 28px; border-radius: 16px; flex-direction: column; justify-content: center; text-align: center; }
+.curriculo-timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-left: 0; border-left: 0; gap: 24px; margin-top: 24px; }
+.curriculo-timeline-dot { display: none; }
+.curriculo-timeline-content { height: 100%; padding: 28px; border-radius: 16px; }
+.curriculo-item-header { flex-wrap: wrap; gap: 12px; }
+.curriculo-item-desc { font-size: .9rem; line-height: 1.75; margin-top: 16px; }
+#contato { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-areas: 'title channels' 'lead channels' 'social channels'; gap: 16px 48px; padding: 40px; border-radius: 16px; align-items: start; text-align: left; margin-top: 24px; }
+.contact-title { grid-area: title; margin: 0; }
+.contact-lead { grid-area: lead; margin: 0; max-width: 54ch; font-size: .94rem; }
+.contact-channels { grid-area: channels; align-self: center; align-items: flex-start; justify-self: end; font-size: .95rem; gap: 20px; }
+.contact-social { grid-area: social; justify-content: flex-start; margin-top: 4px; }
+.contact-channel-item { min-height: 44px; overflow-wrap: anywhere; }
+.contact-channel-item svg { flex-shrink: 0; }
+.skills-carousel-container { margin-top: 32px; padding: 20px 0; }
+@media (prefers-reduced-motion: reduce) {
+  .skills-carousel-container { mask-image: none; -webkit-mask-image: none; }
+  .skills-carousel-group { gap: 20px; padding-right: 0; }
+  .skill-logo-card { width: 80px; min-width: 80px; height: 88px; gap: 8px; }
+  .skill-logo-card img { width: 40px; height: 40px; }
+}
+@media (max-width: 900px) {
+  #sobre { grid-template-columns: minmax(0, 1fr); }
+  .about-academic-box { flex-direction: row; justify-content: flex-start; text-align: left; }
+  #contato { gap: 16px 24px; padding: 32px; }
+}
+@media (max-width: 768px) {
+  .main-container { margin-top: 146px; }
+  section { padding: 32px 0; margin-bottom: 16px; }
+  .browser-content { padding: 40px 18px; }
+  .hero-display-title { font-size: clamp(1.6rem, 6.7vw, 2rem); min-height: 3.8em; }
+  .hero-sec { padding-top: 20px; padding-bottom: 36px; }
+  .about-box { padding: 24px; }
+  .about-academic-box { padding: 20px; gap: 16px; }
+  .curriculo-timeline { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .curriculo-timeline-content { padding: 24px; }
+  #contato { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'title' 'lead' 'channels' 'social'; padding: 28px 24px; gap: 20px; }
+  .contact-title { font-size: 1.85rem; }
+  .contact-channels { justify-self: start; font-size: .86rem; gap: 8px; }
+}
