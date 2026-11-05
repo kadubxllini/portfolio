@@ -1,31 +1,60 @@
-const menuTabs = document.querySelectorAll('.menu-tab');
+const menuTabs = [...document.querySelectorAll('.menu-tab')];
+const menu = document.querySelector('.menu-inner');
+const sections = menuTabs.map(tab => document.querySelector(tab.getAttribute('href')));
+let selectedId = '';
+let navigationTarget = null;
+let settleTimer;
+let scrollFrame = 0;
 
-menuTabs.forEach(link => {
-  link.addEventListener('click', () => {
-    menuTabs.forEach(tab => tab.classList.remove('active'));
-    link.classList.add('active');
+function positionIndicator() {
+  const active = menu.querySelector('.active');
+  if (!active) return;
+  menu.style.setProperty('--indicator-x', `${active.offsetLeft}px`);
+  menu.style.setProperty('--indicator-width', `${active.offsetWidth}px`);
+}
+function selectSection(id) {
+  if (selectedId === id) return;
+  selectedId = id;
+  menuTabs.forEach(tab => {
+    const selected = tab.hash === `#${id}`;
+    tab.classList.toggle('active', selected);
+    if (selected) tab.setAttribute('aria-current', 'location');
+    else tab.removeAttribute('aria-current');
   });
-});
-
-window.addEventListener('scroll', () => {
-  let fromTop = window.scrollY + 200;
-  let activeId = 'inicio';
-
-  document.querySelectorAll('section').forEach(section => {
-    const id = section.getAttribute('id');
-    if (id && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
-      activeId = id;
-    }
-  });
-
-  if (window.scrollY < 100) activeId = 'inicio';
-
-  const targetTab = document.querySelector(`.menu-tab[href="#${activeId}"]`);
-  if (targetTab) {
-    menuTabs.forEach(tab => tab.classList.remove('active'));
-    targetTab.classList.add('active');
+  positionIndicator();
+}
+function syncSection() {
+  if (navigationTarget) return;
+  const offset = document.querySelector('header').getBoundingClientRect().bottom + 60;
+  let current = sections[0];
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= offset) current = section;
   }
-});
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = sections.at(-1);
+  selectSection(current.id);
+}
+menuTabs.forEach(tab => tab.addEventListener('click', event => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  navigationTarget = tab.hash.slice(1);
+  selectSection(navigationTarget);
+  history.replaceState(null, '', tab.hash);
+  document.getElementById(navigationTarget).scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  clearTimeout(settleTimer);
+  settleTimer = setTimeout(() => { navigationTarget = null; syncSection(); }, 180);
+}));
+window.addEventListener('scroll', () => {
+  if (!scrollFrame) scrollFrame = requestAnimationFrame(() => { scrollFrame = 0; syncSection(); });
+  clearTimeout(settleTimer);
+  settleTimer = setTimeout(() => { navigationTarget = null; syncSection(); }, 180);
+}, {passive: true});
+for (const event of ['wheel', 'touchstart']) window.addEventListener(event, () => { navigationTarget = null; }, {passive: true});
+window.addEventListener('keydown', event => { if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(event.key)) navigationTarget = null; });
+new ResizeObserver(positionIndicator).observe(menu);
+selectSection('inicio');
+syncSection();
+document.fonts.ready.then(() => { positionIndicator(); requestAnimationFrame(() => menu.classList.add('is-ready')); });
+window.addEventListener('resize', syncSection);
 
 // Efeito Typewriter para o Hero
 const typewriterContainer = document.getElementById('typewriter-container');

@@ -51,106 +51,6 @@ body {
    HEADER - Branding à esquerda + cápsula centralizada
    ============================================================ */
 
-.header-container {
-  position: fixed;
-  top: 42px;
-  left: 0;
-  width: 100%;
-  padding: 0 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  background: transparent;
-  transition: opacity 0.3s ease;
-}
-
-/* Espaçador invisível para manter o centro perfeito da cápsula */
-.header-right-spacer {
-  display: none;
-}
-
-.branding {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  background: rgba(22, 22, 22, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.03);
-  border-radius: 14px;
-  padding: 8px 18px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.brand-name {
-  font-family: var(--font-sans);
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--text-main);
-  text-decoration: none;
-  letter-spacing: -0.01em;
-  transition: opacity 0.2s ease;
-}
-
-.brand-name:hover {
-  opacity: 0.9;
-}
-
-.brand-title {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.01em;
-}
-
-/* Cápsula de navegação - posicionada absolutamente no centro */
-.menu-capsule {
-  display: flex;
-  align-items: center;
-  background: rgba(22, 22, 22, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.03);
-  border-radius: 100px;
-  padding: 6px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1010;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.menu-inner {
-  display: flex;
-  gap: 4px;
-  position: relative;
-}
-
-.menu-tab {
-  color: var(--text-muted);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 8px 13px;
-  border-radius: 100px;
-  transition: all 0.25s ease;
-  position: relative;
-  display: inline-block;
-}
-
-.menu-tab:hover {
-  color: var(--text-main);
-}
-
-.menu-tab.active {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-}
-
 /* ============================================================
    LAYOUT - Container principal e seções
    ============================================================ */
@@ -993,3 +893,69 @@ footer { flex-wrap: wrap; gap: 20px; }
 .footer-nav { flex-wrap: wrap; justify-content: center; }
 @media (max-width: 768px) { footer { flex-direction: column; align-items: center; text-align: center; } .footer-nav { gap: 16px; } }
 @media (prefers-reduced-motion: reduce) { .skills-carousel-track { width: 100%; } .skills-carousel-group { flex-wrap: wrap; justify-content: center; width: 100%; } .skills-carousel-group + .skills-carousel-group { display: none; } }
+
+/* Barra única, com seleção deslizante sem alterar as medidas dos links. */
+.header-container { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); width: min(1120px, calc(100% - 48px)); padding: 10px 12px 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; z-index: 1000; background: rgba(15, 16, 19, .94); border: 1px solid #28292d; border-radius: 999px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.branding { display: flex; flex-direction: column; flex-shrink: 0; gap: 0; padding: 0; border: 0; background: none; box-shadow: none; backdrop-filter: none; }
+.brand-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; letter-spacing: -.04em; text-decoration: none; color: #f5f5f5; }
+.brand-title { color: #a3a3a3; font-size: .65rem; line-height: 1.4; }
+.menu-capsule { display: flex; position: static; transform: none; padding: 0; border: 0; background: none; box-shadow: none; backdrop-filter: none; min-width: 0; }
+.menu-inner { display: flex; position: relative; gap: 2px; isolation: isolate; }
+.menu-tab { display: block; position: relative; z-index: 1; padding: 10px 14px; font-size: .8rem; line-height: 1.5; font-weight: 500; text-decoration: none; white-space: nowrap; color: #aaa; border: 0; border-radius: 999px; background: transparent; transition: color 180ms ease; }
+.menu-tab:hover { color: #fff; }
+.menu-tab.active { color: #111; background: transparent; border: 0; }
+.menu-indicator { position: absolute; top: 0; bottom: 0; left: 0; width: var(--indicator-width, 59px); transform: translateX(var(--indicator-x, 0px)); z-index: 0; background: #f5f5f3; border-radius: 999px; pointer-events: none; }
+.menu-inner.is-ready .menu-indicator { transition: transform 280ms cubic-bezier(.22,.68,.25,1), width 280ms cubic-bezier(.22,.68,.25,1); }
+.header-contact { flex-shrink: 0; padding: 12px 18px; border-radius: 999px; color: #111; background: #f5f5f3; text-decoration: none; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.header-contact:hover { background: #dededb; }
+@media (max-width: 1000px) { .header-container { gap: 12px; } .menu-tab { padding: 10px 11px; } .header-contact { padding: 12px 14px; font-size: .75rem; } }
+@media (max-width: 768px) { .header-container { top: 12px; width: calc(100% - 24px); padding: 14px 12px 10px; border-radius: 26px; flex-wrap: wrap; justify-content: center; gap: 12px; } .branding { flex: 1; padding-left: 8px; align-items: flex-start; } .brand-name { font-size: 1rem; } .brand-title { font-size: .6rem; } .header-contact { padding: 9px 12px; font-size: .7rem; } .menu-capsule { order: 3; width: 100%; justify-content: center; } .menu-inner { width: 100%; justify-content: space-between; gap: 0; } .menu-tab { font-size: .72rem; padding: 9px 12px; text-align: center; } }
+@media (max-width: 360px) { .menu-tab { padding: 9px 8px; font-size: .68rem; } }
+@media (prefers-reduced-motion: reduce) { .menu-inner.is-ready .menu-indicator { transition: none; } }
+@media (max-width: 768px) { .header-container { flex-direction: row; } .branding { width: auto; text-align: left; } }
+/* Barra compacta, com largura determinada pelo conteúdo. */
+.header-container { width: max-content; max-width: calc(100% - 40px); gap: 24px; padding: 8px 10px 8px 20px; }
+.brand-title { display: none; }
+.menu-tab { padding: 9px 12px; }
+.header-contact { padding: 10px 15px; }
+@media (max-width: 1000px) { .header-container { gap: 18px; } .menu-tab { padding: 9px 10px; } }
+@media (max-width: 768px) { .header-container { width: min(440px, calc(100% - 24px)); max-width: none; gap: 10px; padding: 12px 10px 8px; } .branding { padding-left: 6px; } .header-contact { padding: 8px 11px; } .menu-tab { padding: 8px 10px; } }
+@media (max-width: 360px) { .menu-tab { padding: 8px; } }
+/* Largura intermediária para dar mais respiro à navegação. */
+@media (min-width: 769px) {
+  .header-container { width: min(940px, calc(100% - 48px)); gap: 28px; padding: 11px 12px 11px 24px; }
+  .brand-name { font-size: 1.1rem; }
+  .menu-tab { padding: 11px 15px; font-size: .82rem; }
+  .header-contact { padding: 12px 18px; font-size: .8rem; }
+}
+@media (min-width: 769px) and (max-width: 1000px) {
+  .header-container { gap: 16px; }
+  .menu-tab { padding: 10px 12px; }
+}
+@media (min-width: 769px) {
+  .header-container { width: min(860px, calc(100% - 48px)); gap: 22px; padding: 10px 12px 10px 22px; }
+  .brand-name { font-size: 1.05rem; }
+  .menu-tab { padding: 10px 13px; font-size: .8rem; }
+  .header-contact { padding: 11px 16px; font-size: .78rem; }
+}
+
+.public-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 28px; }
+.public-project-card { min-width: 0; }
+.public-project-image { display: block; overflow: hidden; border-radius: 16px; background: #171717; border: 1px solid var(--border-hover); }
+.public-project-image img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; transition: transform 220ms ease; }
+.public-project-image:hover img { transform: scale(1.025); }
+.public-project-image.catalog-image { background: #f3f2ef; }
+.public-project-image.catalog-image img { object-fit: contain; }
+.public-project-card h4 { margin-top: 16px; font-size: 1rem; font-family: var(--font-display); }
+.public-project-card h4 a { text-decoration: none; }
+.public-project-card h4 a:hover { text-decoration: underline; }
+.public-project-card .public-image-caption { font-size: .72rem; margin-top: 10px; }
+@media (max-width: 600px) { .public-project-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+/* Capturas sem proporção forçada ou molduras sobrepostas. */
+.projeto-bloco { border-radius: 12px; }
+.project-figure { padding: 0; }
+.project-figure a { border-radius: 0; background: transparent; }
+.project-figure img, .public-project-image img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; border-radius: 0; transform: none; }
+.project-figure a:hover img, .public-project-image:hover img { transform: none; }
+.project-figure figcaption { padding: 14px 24px 0; }
+.public-project-image { border-radius: 8px; background: transparent; }
