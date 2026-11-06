@@ -135,7 +135,21 @@ if (carousel && track && !window.matchMedia("(prefers-reduced-motion: reduce)").
   let targetSpeed = speed;
   let position = 0;
   let groupWidth = 0;
-  let lastMeasuredWidth = 0;
+  let animationFrame = 0;
+
+  const sizeObserver = new ResizeObserver(([entry]) => {
+    groupWidth = entry.borderBoxSize?.[0]?.inlineSize ?? entry.target.offsetWidth;
+  });
+  if (group) sizeObserver.observe(group);
+
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && !animationFrame) {
+      animationFrame = requestAnimationFrame(animate);
+    } else if (!entry.isIntersecting && animationFrame) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
+  }).observe(carousel);
 
   carousel.addEventListener('mouseenter', () => {
     targetSpeed = 0;
@@ -146,13 +160,6 @@ if (carousel && track && !window.matchMedia("(prefers-reduced-motion: reduce)").
   });
 
   function animate() {
-    // Recalcula a largura dinamicamente caso as imagens terminem de carregar ou a janela seja redimensionada
-    const currentWidth = group ? group.getBoundingClientRect().width : 0;
-    if (currentWidth !== lastMeasuredWidth && currentWidth > 0) {
-      groupWidth = currentWidth;
-      lastMeasuredWidth = currentWidth;
-    }
-
     // Interpolação linear para desaceleração mais lenta e suave (coeficiente de 0.025)
     currentSpeed += (targetSpeed - currentSpeed) * 0.025;
 
@@ -164,8 +171,137 @@ if (carousel && track && !window.matchMedia("(prefers-reduced-motion: reduce)").
       track.style.transform = `translateX(${position}px)`;
     }
 
-    requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
+  }
+}
+
+const tiltPreference = window.matchMedia(
+  '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'
+);
+
+document.querySelectorAll('.projeto-bloco').forEach(card => {
+  function resetTilt() {
+    card.style.removeProperty('--tilt-x');
+    card.style.removeProperty('--tilt-y');
   }
 
-  requestAnimationFrame(animate);
+  card.addEventListener('pointermove', event => {
+    if (!tiltPreference.matches || event.pointerType !== 'mouse') return;
+
+    const bounds = card.getBoundingClientRect();
+    const x = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
+    const y = Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height));
+    card.style.setProperty('--tilt-x', ((0.5 - y) * 8) + 'deg');
+    card.style.setProperty('--tilt-y', ((x - 0.5) * 8) + 'deg');
+  });
+
+  card.addEventListener('pointerleave', resetTilt);
+  card.addEventListener('pointercancel', resetTilt);
+  tiltPreference.addEventListener('change', resetTilt);
+});
+
+// Matriz fixa de pixels, inspirada no Card Spotlight de Manu Arora.
+const spotlight = document.createElement('canvas');
+spotlight.className = 'page-spotlight';
+spotlight.width = spotlight.height = 560;
+spotlight.setAttribute('aria-hidden', 'true');
+const spotlightContext = spotlight.getContext('2d');
+const spotRadius = spotlight.width / 2;
+const pixelStep = 4;
+const pixelColors = ['#ad0017', '#d9283f'];
+const pixelOpacity = [0.17, 0.17, 0.17, 0.27, 0.27, 0.27, 0.42, 0.42, 0.42, 0.54];
+let spotX = 0;
+let spotY = 0;
+let spotStart = 0;
+let spotFrame = 0;
+let spotScrollTimer = 0;
+let spotActive = false;
+let lastSpotDraw = -Infinity;
+
+function pixelRandom(x, y) {
+  let hash = Math.imul(x, 374761393) + Math.imul(y, 668265263);
+  hash = Math.imul(hash ^ (hash >>> 13), 1274126177);
+  return ((hash ^ (hash >>> 16)) >>> 0) / 4294967296;
+}
+
+function drawSpotlight(now) {
+  if (now - lastSpotDraw >= 32) {
+    lastSpotDraw = now;
+    const elapsed = (now - spotStart) / 1000;
+    const left = spotX - spotRadius;
+    const top = spotY - spotRadius;
+    spotlight.style.transform = 'translate(' + left + 'px, ' + top + 'px)';
+    spotlightContext.clearRect(0, 0, spotlight.width, spotlight.height);
+
+    for (let y = Math.ceil(top / pixelStep); y * pixelStep < top + spotlight.height; y++) {
+      for (let x = Math.ceil(left / pixelStep); x * pixelStep < left + spotlight.width; x++) {
+        const px = x * pixelStep - left;
+        const py = y * pixelStep - top;
+        const distance = Math.hypot(px - spotRadius, py - spotRadius);
+        if (distance > spotRadius) continue;
+
+        const seed = pixelRandom(x, y);
+        const reveal = distance / pixelStep * 0.01 + seed * 0.15;
+        if (elapsed * 5 < reveal) continue;
+
+        const phase = Math.floor(elapsed / 5 + seed);
+        const strength = pixelRandom(x + phase * 149, y + phase * 67);
+        spotlightContext.globalAlpha = pixelOpacity[Math.floor(strength * pixelOpacity.length)];
+        spotlightContext.fillStyle = pixelColors[seed < 0.5 ? 0 : 1];
+        spotlightContext.fillRect(px, py, 3, 2);
+      }
+    }
+  }
+
+  spotFrame = requestAnimationFrame(drawSpotlight);
+}
+
+if (spotlightContext) {
+  document.body.prepend(spotlight);
+  window.addEventListener('pointermove', event => {
+    if (!tiltPreference.matches || event.pointerType !== 'mouse') return;
+
+    spotX = Math.round(event.clientX);
+    spotY = Math.round(event.clientY);
+    if (!spotActive) {
+      spotActive = true;
+      spotStart = performance.now();
+      lastSpotDraw = -Infinity;
+      spotlight.classList.add('is-visible');
+    }
+    resumeSpotlight();
+  }, { passive: true });
+
+  function pauseSpotlight() {
+    cancelAnimationFrame(spotFrame);
+    spotFrame = 0;
+  }
+
+  function resumeSpotlight() {
+    if (spotActive && !spotFrame && !spotScrollTimer) {
+      spotFrame = requestAnimationFrame(drawSpotlight);
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!spotActive) return;
+    pauseSpotlight();
+    clearTimeout(spotScrollTimer);
+    spotScrollTimer = setTimeout(() => {
+      spotScrollTimer = 0;
+      resumeSpotlight();
+    }, 140);
+  }, { passive: true });
+
+  function hideSpotlight() {
+    spotActive = false;
+    pauseSpotlight();
+    clearTimeout(spotScrollTimer);
+    spotScrollTimer = 0;
+    spotlight.classList.remove('is-visible');
+  }
+
+  document.documentElement.addEventListener('pointerleave', hideSpotlight);
+  window.addEventListener('blur', hideSpotlight);
+  tiltPreference.addEventListener('change', hideSpotlight);
 }

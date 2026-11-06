@@ -316,8 +316,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(173, 0, 23, 0.1);
-  border: 1px solid rgba(173, 0, 23, 0.2);
   border-radius: 12px;
   width: 48px;
   height: 48px;
@@ -460,8 +458,10 @@ section {
 }
 
 .projeto-bloco {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dark);
+  background-color: rgb(19 19 19 / 60%);
+  background-image: radial-gradient(circle, rgb(255 255 255 / 5%) 0.6px, transparent 0.9px);
+  background-size: 5px 5px;
+  border: 1px solid #383438;
   border-radius: 18px;
   padding: 24px 28px;
   display: flex;
@@ -472,7 +472,7 @@ section {
 
 .projeto-bloco:hover {
   border-color: var(--accent);
-  background-color: rgba(173, 0, 23, 0.01);
+  background-color: rgb(22 19 21 / 64%);
   transform: translateY(-2px);
 }
 
@@ -882,9 +882,7 @@ footer {
 .project-note { color: var(--text-muted); font-size: .78rem; line-height: 1.7; margin: 24px 0 40px; }
 .public-projects { padding: 28px 0; border-top: 1px solid var(--border-hover); }
 .public-projects h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; }
-.public-projects p, .public-projects li { color: var(--text-muted); font-size: .88rem; margin-top: 12px; }
-.public-projects ul { list-style: none; }
-.public-projects a { color: var(--text-main); text-underline-offset: 4px; }
+.public-projects > p { color: var(--text-muted); font-size: .88rem; margin-top: 12px; }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 @media (max-width: 768px) { .projetos-container { grid-template-columns: minmax(0, 1fr); gap: 24px; } .project-copy { padding: 22px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
@@ -939,26 +937,13 @@ footer { flex-wrap: wrap; gap: 20px; }
   .header-contact { padding: 11px 16px; font-size: .78rem; }
 }
 
-.public-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 28px; }
-.public-project-card { min-width: 0; }
-.public-project-image { display: block; overflow: hidden; border-radius: 16px; background: #171717; border: 1px solid var(--border-hover); }
-.public-project-image img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; transition: transform 220ms ease; }
-.public-project-image:hover img { transform: scale(1.025); }
-.public-project-image.catalog-image { background: #f3f2ef; }
-.public-project-image.catalog-image img { object-fit: contain; }
-.public-project-card h4 { margin-top: 16px; font-size: 1rem; font-family: var(--font-display); }
-.public-project-card h4 a { text-decoration: none; }
-.public-project-card h4 a:hover { text-decoration: underline; }
-.public-project-card .public-image-caption { font-size: .72rem; margin-top: 10px; }
-@media (max-width: 600px) { .public-project-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 /* Capturas sem proporção forçada ou molduras sobrepostas. */
 .projeto-bloco { border-radius: 12px; }
 .project-figure { padding: 0; }
 .project-figure a { border-radius: 0; background: transparent; }
-.project-figure img, .public-project-image img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; border-radius: 0; transform: none; }
-.project-figure a:hover img, .public-project-image:hover img { transform: none; }
+.project-figure img { width: 100%; height: auto; aspect-ratio: auto; object-fit: initial; border-radius: 0; transform: none; }
+.project-figure a:hover img { transform: none; }
 .project-figure figcaption { padding: 14px 24px 0; }
-.public-project-image { border-radius: 8px; background: transparent; }
 /* Mais área útil nos projetos, mantendo os textos longos legíveis. */
 .main-container { width: calc(100% - 64px); max-width: 1160px; }
 #inicio, #sobre, #curriculo, #contato { max-width: 920px; margin-left: auto; margin-right: auto; }
@@ -971,7 +956,6 @@ footer { flex-wrap: wrap; gap: 20px; }
 .project-copy .projeto-links { margin-top: auto; }
 .project-copy .projeto-tag { white-space: normal; }
 .project-private { margin-top: 8px; }
-.public-project-grid { gap: 28px; }
 @media (max-width: 768px) { .main-container { width: calc(100% - 32px); } .project-copy { padding: 16px 18px 18px; } .project-figure figcaption { padding: 12px 18px 0; } }
 /* A mesma largura de seção em todo o portfólio. */
 #inicio, #sobre, #curriculo, #contato { max-width: none; }
@@ -1031,4 +1015,56 @@ section { padding: 48px 0; margin-bottom: 16px; }
   #contato { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'title' 'lead' 'channels' 'social'; padding: 28px 24px; gap: 20px; }
   .contact-title { font-size: 1.85rem; }
   .contact-channels { justify-self: start; font-size: .86rem; gap: 8px; }
+}
+
+/* Inclinação dos cards de projeto em resposta ao ponteiro. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projeto-bloco {
+    transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform 340ms cubic-bezier(.2, .75, .25, 1), border-color 300ms ease, background-color 300ms ease;
+  }
+
+  .projeto-bloco:hover {
+    transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition-duration: 140ms, 300ms, 300ms;
+  }
+}
+
+/* Spotlight no fundo da página, abaixo do conteúdo. */
+body {
+  isolation: isolate;
+}
+
+.page-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: radial-gradient(circle closest-side, #000 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.page-spotlight.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-spotlight { display: none; }
+}
+
+/* Clasure abre a seção com um card de largura inteira. */
+.projeto-destaque {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: center;
+}
+.projeto-destaque .project-copy { padding: clamp(20px, 4vw, 48px); }
+.projeto-destaque .projeto-titulo { font-size: clamp(1.45rem, 3vw, 2.25rem); }
+@media (max-width: 768px) {
+  .projeto-destaque { grid-template-columns: minmax(0, 1fr); }
 }
